@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gestionfinanciera'
+    'gestionfinanciera',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'gofinanzas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,6 +74,17 @@ WSGI_APPLICATION = 'gofinanzas.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'gofinanzas',
+        'USER': 'postgres',
+        'PASSWORD':'1',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
+}'''
 
 DATABASES = {
     'default': {
@@ -117,5 +129,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+#STATICFILES_DIRS = (os.path.join(BASE_DIR),'static')
 STATIC_URL = '/static/'
+
+# se creanlas variables de redireccionamiento,, as cuales se les coloca la ruta donde se va a ir l momento de iniciar o cerrar sesion
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECTURL = '/'
+
+#Variables utilizadas par el envio de correos electronicos
+
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sistemasmanizalesgofinanzas@gmail.com'
+EMAIL_HOST_PASSWORD ='463phago'
+EMAIL_PORT = 465
